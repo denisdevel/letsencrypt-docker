@@ -1,0 +1,6 @@
+#!/bin/bash
+
+certbot --apache --agree-tos --email dima.galat@gronade.com -d gronade.com
+echo "45 6 * * * certbot renew && apachectl -k restart" >> /etc/crontab
+/usr/sbin/cron -f
+/usr/sbin/apache2 -f /etc/apache2/apache2.conf -DNO_DETACH
